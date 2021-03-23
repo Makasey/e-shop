@@ -1,0 +1,13 @@
+<div class="popular_block">
+  <div class="container">
+    <h2>{{title}}</h2>
+    <div class="popular_cars">
+        <popular-car
+
+          *ngFor="let car of cars"
+          [car]="car">
+
+        </popular-car>
+    </div>
+  </div>
+</div>

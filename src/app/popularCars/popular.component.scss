@@ -1,0 +1,25 @@
+.popular_block{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .container{
+    max-width: 1500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    h2{
+      width: 100%;
+      text-align: center;
+      font-size: 36px;
+      font-family: 'Robot', sans-serif;
+      margin: 30px 0;
+
+    }
+    .popular_cars{
+      popular-car{
+        width:100%;
+      }
+    }
+  }
+}
