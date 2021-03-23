@@ -1,0 +1,25 @@
+.headerMenu{
+  width: 100%;
+  .menuList{
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    width: 100%;
+    align-items: center;
+    li{
+      a{
+        font-size: 18px;
+        font-family: 'Roboto', sans-serif;
+        text-decoration: none;
+        color: #707070;
+        text-transform: uppercase;
+        font-weight: 1000;
+        &:hover{
+          color: #e5493a;
+          border-bottom: 3px solid #e5493a;
+        }
+      }
+    }
+
+  }
+}
