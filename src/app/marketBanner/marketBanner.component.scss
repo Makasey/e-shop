@@ -1,11 +1,12 @@
-.marketBanner{
+.marketBanner {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  .bannerImage{
+  position: relative;
+
+  app-carousel-slide {
     width: 100%;
-    background-image: url('../../assets/banner_first.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     height: auto;
@@ -14,22 +15,32 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    a{
-      margin: 0 20px;
-      &:hover{
-        i{
-          color: #e5493a;
-        }
-      }
-      i{
-        font-size: 64px;
-        color: #707070;
+  }
+  button {
+    margin: 0 20px;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 50%;
+    outline: none;
+
+    &:hover {
+      i {
+        color: #e5493a;
       }
     }
-    img{
-      width: 100%;
-      height: auto;
+
+    i {
+      font-size: 64px;
+      color: #707070;
     }
+  }
+  .prev_image {
+    left: 0;
+  }
+
+  .next_image {
+    right: 0;
   }
 }
 

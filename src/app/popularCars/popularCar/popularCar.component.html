@@ -1,5 +1,5 @@
 <div class="popular_car">
-  <div class="car_image">
+  <div class="car_image" [ngStyle]="{'background-image': 'url(' + car?.image + ')'}">
     <div class="car_image--hover">
       <a href="#" class="Show_more_link">Show more</a>
       <a href="#" class="add_to_wish"><i class="fa fa-heart"></i></a>

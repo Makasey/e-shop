@@ -16,7 +16,11 @@ import {AngularFireModule} from "@angular/fire";
 import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth';
-
+import {CatalogComponent} from "./catalog/catalog.component";
+import {HomeComponent} from "./homePage/home.component";
+import {CatalogItemComponent} from "./catalog/catalogItem/catalogItem.component";
+import { CarouselSlideComponent} from "./marketBanner/carousel-slide/carousel-slide.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -27,6 +31,10 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
     PopularCarsComponent,
     PopularCarComponent,
     FooterComponent,
+    CatalogComponent,
+    HomeComponent,
+    CatalogItemComponent,
+    CarouselSlideComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +43,8 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    BrowserAnimationsModule
 
   ],
   providers: [],

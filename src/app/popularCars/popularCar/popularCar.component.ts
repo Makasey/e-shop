@@ -7,8 +7,10 @@ import {Car} from "../../interfaces/Car";
   styleUrls: ['./popularCar.component.scss']
 })
 export class PopularCarComponent{
+
   @Input()
-  public car?: Car;
+  public car: Car;
 
 }
+
 

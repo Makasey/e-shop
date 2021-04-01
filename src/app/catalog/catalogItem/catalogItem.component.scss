@@ -1,0 +1,60 @@
+.catalog__item{
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .container{
+    max-width: 1500px;
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid gray;
+    padding-bottom: 10px;
+    .image{
+      width: 20%;
+      height:200px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      background-position: center;
+    }
+    .description{
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      .characteristics{
+        .char__list{
+          .char__list__point{
+            list-style-type: none;
+            text-align: left ;
+            font-size: 18px;
+          }
+        }
+      }
+      .name__car{
+        font-size:30px;
+        text-align: left;
+      }
+      .comment{
+        font-size: 16px;
+        text-align: left;
+      }
+      .buy__price{
+        display: flex;
+        justify-content: space-between;
+        width: 20%;
+        button{
+          display: inline-block;
+          padding: 5px 10px;
+          background-color: green;
+          color: white;
+        }
+      }
+    }
+  }
+}

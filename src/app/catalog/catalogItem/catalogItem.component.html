@@ -1,0 +1,20 @@
+<div class="catalog__item">
+  <div class="container">
+    <div class="image" [ngStyle]="{'background-image': 'url(' + car?.image + ')'}"></div>
+    <div class="description">
+      <h2 class="name__car">{{car?.name}} {{car?.surname}}</h2>
+      <div class="characteristics">
+        <ul class="char__list">
+          <li class="char__list__point">Engine Capacity:{{car?.engineCapacity}}</li>
+          <li class="char__list__point">Engine Power:{{car?.enginePower}}</li>
+          <li class="char__list__point">Release Date:{{car?.releaseDate}}</li>
+        </ul>
+      </div>
+      <p class="comment">{{car?.comment}}</p>
+      <div class="buy__price">
+        <p class="price">{{car?.price}}$</p>
+        <button class="buy__car">Buy</button>
+      </div>
+    </div>
+  </div>
+</div>

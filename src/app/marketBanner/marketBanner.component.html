@@ -1,6 +1,13 @@
 <div class="marketBanner">
-  <div class="bannerImage">
-    <a class="prev_image"><i class="fa fa-angle-left"></i></a>
-    <a class="next_image"><i class="fa fa-angle-right"></i></a>
-  </div>
+  <ng-container  *ngFor="let image of sliderImages; let i = index">
+    <app-carousel-slide
+      *ngIf="i === counter"
+      [image] = "image"
+      [counter] = "counter"
+      [ngStyle]="{'background-image': 'url(' + image.image + ')'}">
+
+    </app-carousel-slide>
+  </ng-container>
+  <button class="prev_image" (click)="prevSlide()"><i class="fa fa-angle-left"></i></button>
+  <button class="next_image" (click)="nextSlide()"><i class="fa fa-angle-right"></i></button>
 </div>

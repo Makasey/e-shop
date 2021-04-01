@@ -5,4 +5,6 @@ export interface Car {
   enginePower?: number;
   surname?: string;
   price?: number;
+  image?: string;
+  comment?: string;
 }

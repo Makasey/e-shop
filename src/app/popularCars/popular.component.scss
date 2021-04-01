@@ -17,8 +17,10 @@
 
     }
     .popular_cars{
+      display: flex;
+      justify-content: space-around;
       popular-car{
-        width:100%;
+        width:20%;
       }
     }
   }

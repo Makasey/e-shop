@@ -1,0 +1,11 @@
+.catalog__page {
+  text-align: center;
+  font-family: 'Robot', sans-serif;
+  font-size: 24px;
+  h1{
+    margin-bottom: 100px;
+  }
+  app-catalogItem {
+    width: 100%;
+  }
+}

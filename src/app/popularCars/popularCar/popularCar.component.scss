@@ -1,11 +1,11 @@
 .popular_car{
-  width:15%;
+  width:100%;
   text-align: center;
   .car_image{
     background-image: url('../../../assets/photo_car3.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 150px;
+    min-height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;

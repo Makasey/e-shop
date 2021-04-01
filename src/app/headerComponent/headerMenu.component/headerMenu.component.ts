@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-menu-header',
@@ -9,5 +10,12 @@ export class headerMenuComponent {
   public menuPoint = 'Home';
   public menuCatalog = 'Catalog';
   public menuAccount = 'Account';
+
+  constructor(private auth: AuthService) {
+
+  }
+  public signIn():void{
+    this.auth.googleSign().subscribe()
+  }
 
 }

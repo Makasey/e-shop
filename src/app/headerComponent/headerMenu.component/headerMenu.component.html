@@ -1,7 +1,7 @@
 <nav class="headerMenu">
   <ul class="menuList">
-    <li class="headerMenuPoint"><a routerLink="/{{menuPoint}}">{{menuPoint}}</a></li>
-    <li class="headerMenuPoint"><a routerLink="/{{menuPoint}}">{{menuCatalog}}</a></li>
-    <li class="headerMenuPoint"><a routerLink="/{{menuPoint}}">{{menuAccount}}</a></li>
+    <li class="headerMenuPoint"><a routerLink="/">{{menuPoint}}</a></li>
+    <li class="headerMenuPoint"><a routerLink="/catalog">{{menuCatalog}}</a></li>
+    <li class="headerMenuPoint"><a (click)="signIn()" >{{menuAccount}}</a></li>
   </ul>
 </nav>
