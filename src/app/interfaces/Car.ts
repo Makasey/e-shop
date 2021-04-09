@@ -7,4 +7,6 @@ export interface Car {
   price?: number;
   image?: string;
   comment?: string;
+  id?: string;
+  uid?: string;
 }

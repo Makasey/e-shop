@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {CommonModule} from "@angular/common";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {headerComponent} from "./headerComponent/header.component";
 import {headerMenuComponent} from "./headerComponent/headerMenu.component/headerMenu.component";
 import {MarketBannerComponent} from "./marketBanner/marketBanner.component";
@@ -21,6 +21,8 @@ import {HomeComponent} from "./homePage/home.component";
 import {CatalogItemComponent} from "./catalog/catalogItem/catalogItem.component";
 import { CarouselSlideComponent} from "./marketBanner/carousel-slide/carousel-slide.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { AccountComponent } from './account/account.component';
+import {imagePipe} from "./pipes/imagePipe";
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     CatalogComponent,
     HomeComponent,
     CatalogItemComponent,
-    CarouselSlideComponent
+    CarouselSlideComponent,
+    AccountComponent,
+    imagePipe
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
 
   ],
   providers: [],

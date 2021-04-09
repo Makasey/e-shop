@@ -27,7 +27,7 @@ export class AuthService {
   }
 
   public signOut(): Observable<void> {
-    return from(this.angAuthService.signOut()).pipe(take(1));
+    return from(this.angAuthService.signOut()).pipe(take(1))
   }
 
   public updateUserData(user: any): void {

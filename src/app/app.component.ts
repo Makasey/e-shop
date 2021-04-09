@@ -2,7 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "./services/auth.service";
 import {CrudService} from "./services/crud.service";
-import {map, switchMap, tap} from "rxjs/operators";
+import { takeWhile, tap} from "rxjs/operators";
+import {UploadService} from "./upload.service";
+import {combineLatest} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -10,9 +12,11 @@ import {map, switchMap, tap} from "rxjs/operators";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  constructor(private router:Router, private authService: AuthService, private crudService: CrudService) {
+  constructor(private router:Router, private authService: AuthService, private crudService: CrudService,private uploadService: UploadService) {
   }
   title = 'AlexCar';
+  public imageLink:string
+  public progress:string
   public goTo():void{
 
     // this.crudService.createEntity("CarsArray",{'name':"test1",'surname':"test2",'name3':"test3"}).pipe(
@@ -25,6 +29,18 @@ export class AppComponent implements OnInit{
   }
   ngOnInit() {
     // this.goTo()
+  }
+  public onFileSelected(event): void {
+    const file = event.target.files[0];
+    combineLatest(this.uploadService.uploadFile('test', file))
+      .pipe(tap(([percent, link]) => {
+          this.progress = percent.toString();
+          this.imageLink = link;
+        }
+        ),
+        takeWhile(([percent, link]) => !link))
+      .subscribe();
+
   }
 
 }

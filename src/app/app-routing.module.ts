@@ -2,14 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {CatalogComponent} from "./catalog/catalog.component";
 import {AppComponent} from "./app.component";
-import {headerComponent} from "./headerComponent/header.component";
 import {AuthGuardService} from "./guards/auth-guard.service";
 import {HomeComponent} from "./homePage/home.component";
+import {AccountComponent} from "./account/account.component";
 
 const routes: Routes = [
   {path: 'app', component: AppComponent },
-  {path:'catalog', component:CatalogComponent,canActivate:[AuthGuardService]},
+  {path:'catalog', component:CatalogComponent},
   {path:'', component:HomeComponent},
+  {path: 'account', component:AccountComponent,canActivate:[AuthGuardService]}
 ]
 
 @NgModule({

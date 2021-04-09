@@ -5,9 +5,20 @@
     </div>
     <app-menu-header></app-menu-header>
     <div class="header__icons">
-      <i class="fa fa-heart"></i>
-      <i class="fa fa-shopping-cart"></i>
-      <i class="fa fa-search"></i>
+      <button class="open__cart header__icons__button" (click)="isViewCart($event)"><i class="fa fa-shopping-cart"></i></button>
+      <button class="sign__in header__icons__button" (click)="signIn()" ><i class="fa fa-sign-in" *ngIf="isAccount"></i></button>
+      <button class="sign__out header__icons__button" (click)="signOut()"><i class="fa fa-sign-out"></i></button>
+      <div class="drop__cart" (click)="isViewCart($event)" *ngIf="isCart" >
+        <div class="cart">
+          <div class="cart__item" *ngFor="let car of carsArray">
+              <img src="" alt="" class="cart__item__image">
+              <h2 class="cart__item__title">{{car.name}}</h2>
+              <p class="cart__item__price">{{car.price}}</p>
+              <button class="cart__item__delete" (click)="deleteFromCart(car.uid)">delete from cart</button>
+            </div>
+        </div>
+      </div>
     </div>
+
   </div>
 </header>

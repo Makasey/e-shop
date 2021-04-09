@@ -1,0 +1,23 @@
+<div class="container">
+  <button (click)="viewAddCarBlock()">Add car</button>
+  <button>Пополнить баланс</button>
+  <h1>Create your car</h1>
+  <form class="create__car__form" [formGroup]="addCarForm" (submit)="onSubmit()" *ngIf="isHidden == true">
+    <div class="car__name">
+      <input type="text" class="name" formControlName="name" placeholder="Car name" />
+      <input type="text" class="surname" formControlName="surname" placeholder="Car surname" />
+    </div>
+    <div class="characteristics">
+      <input type="number" class="engine__capacity" formControlName="engineCapacity" placeholder="Engine capacity"/>
+      <input type="text" class="engine__power" formControlName="enginePower" placeholder="Engine power"/>
+      <input type="text" class="release__date" formControlName="releaseDate" placeholder="Release date"/>
+    </div>
+    <input type="number" class="price" formControlName="price" placeholder="price in $"/>
+    <textarea class="comment" formControlName="image" placeholder="Comment"></textarea>
+    <button type="submit" class="add__car">Добавить</button>
+  </form>
+</div>
+
+<!--<div>-->
+<!--  {{addCarForm.value | json}}-->
+<!--</div>-->
