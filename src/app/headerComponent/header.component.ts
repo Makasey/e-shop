@@ -1,49 +1,98 @@
-import {Component, OnInit} from '@angular/core';
-import {CrudService} from "../services/crud.service";
-import {Car} from "../interfaces/Car";
-import {AuthService} from "../services/auth.service";
+import { Component, OnInit } from '@angular/core';
+import { filter, switchMap, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import firebase from 'firebase';
+import { CrudService } from '../services/crud.service';
+import { Car } from '../interfaces/Car';
+import { AuthService } from '../services/auth.service';
+import { StorageService } from '../storage.service';
+import User = firebase.User;
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class headerComponent implements OnInit {
   public title = 'header';
-  public cartCounter = 0;
-  public isCart = false;
-  public carsArray: Car[] = [];
-  public car: Car;
-  public isAccount = true
 
-  constructor(private crudService: CrudService, private auth: AuthService) {
-  }
+  public cartCounter = 0;
+
+  public isCart = false;
+
+  public carsArray: Car[] = [];
+
+  public car: Car;
+
+  public isAccount = true;
+
+  public totalCartPrice = 0;
+
+  constructor(
+    private crudService: CrudService,
+    private auth: AuthService,
+    private storageService: StorageService,
+  ) {}
 
   public isViewCart(event) {
     event.stopPropagation();
-    if (this.isCart) return this.isCart = false
-    return this.isCart = true
-
+    if (this.isCart) return (this.isCart = false);
+    return (this.isCart = true);
   }
 
   public closeCart() {
-    return this.isCart = false
+    return (this.isCart = false);
   }
 
-  public deleteFromCart(id) {
-    console.log(id)
-    //this.carsArray.filter( it => it.id !== id);
+  public stopProp($event): void {
+    $event.stopPropagation();
   }
-  public signIn():void{
-    this.auth.googleSign().subscribe()
+
+  public deleteFromCart(index) {
+    const filteredArray = this.storageService.cartData.cart.filter((it, idx) => idx !== index);
+    this.carsArray = filteredArray;
+    this.storageService.cartData.cart = filteredArray;
+    this.crudService
+      .updateCart('carts', this.storageService.cartData.id, filteredArray)
+      .subscribe();
   }
-  public signOut():void{
-    this.auth.signOut().subscribe()
+
+  public signIn(): void {
+    this.auth.googleSign().subscribe();
+    this.isAccount = false;
+  }
+
+  public signOut(): void {
+    this.isAccount = true;
+    this.auth.signOut().subscribe();
   }
 
   ngOnInit() {
-    this.crudService.getData("cartArray").subscribe(value => this.carsArray = value)
+    this.storageService.userData$
+      .pipe(
+        filter((value: User) => !!value),
+        switchMap((value) => {
+          console.log(value);
+          if (value.uid) {
+            return this.crudService
+              .getDataWithQuery('carts', {
+                firstQueryName: 'userId',
+                firstQueryValue: value.uid,
+                secondQueryName: 'status',
+                secondQueryValue: 'active',
+              })
+              .pipe(
+                tap((value: any) => {
+                  console.log(value);
+                  this.carsArray = value[0].cart;
+                  this.storageService.cartData = value[0];
+                  this.totalCartPrice = this.carsArray.reduce((acc, it) => (acc += +it.price), 0);
+                }),
+              );
+          }
+          return of([]);
+        }),
+      )
+      .subscribe();
   }
-
 }
-

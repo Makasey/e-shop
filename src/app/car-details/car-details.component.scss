@@ -1,0 +1,54 @@
+.car__details__component{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  .container{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1500px;
+    margin: auto;
+   .car__details{
+     width: 30%;
+     margin-left: 20px;
+     .car__title{
+       text-align: center;
+       width: 100%;
+       height: auto;
+       font-family: 'Robot', sans-serif;
+       margin-bottom: 20px;
+     }
+     .description{
+       font-family: 'Robot', sans-serif;
+     }
+     .characteristics__list{
+       margin-top: 10px;
+       .characteristics__list__point{
+         list-style-type: none;
+         font-size: 20px;
+         display: flex;
+         justify-content: space-between;
+         padding-bottom: 20px;
+       }
+     }
+     .add__to__cart__btn{
+       width: 50%;
+       background-color: #55BB00;
+       color:white;
+       padding: 10px;
+       border: none;
+       outline: none;
+       font-size: 20px;
+       cursor: pointer;
+     }
+   }
+    .car__image{
+      width: 70%;
+      img{
+        width: 100%;
+      }
+    }
+  }
+}

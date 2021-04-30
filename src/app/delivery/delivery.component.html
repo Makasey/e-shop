@@ -1,0 +1,35 @@
+<div class="container">
+
+  <form class="delivery__contact__form" [formGroup]="deliveryForm" (submit)="onSubmit()">
+    <div class="delivery__data">
+      <h1 class="delivery__page__title">Fill delivery form</h1>
+      <input type="text" class="country__deliver delivery__field" formControlName="country" placeholder="Страна">
+      {{deliveryForm.controls['cityName']?.errors?.pattern}}
+      <div class="error" *ngIf="deliveryForm.controls['cityName']?.errors?.pattern">
+        Use only
+      </div>
+      <input type="text" class="city__name delivery__field" formControlName="cityName" placeholder="City name"/>
+      <input type="text" class="street__name delivery__field" formControlName="streetName" placeholder="Street name"/>
+      <input type="text" class="house address delivery__field" formControlName="houseAddress" placeholder="Дом">
+    </div>
+    <div class="contact__form">
+      <h1 class="contact__form__title">Fill contact form</h1>
+      <input type="text" class="your__name contact__field" formControlName="name" placeholder="Name">
+      <input type="text" class="your__surname contact__field" formControlName="surname" placeholder="Surname">
+      <input type="text" class="your__phone contact__field" formControlName="phone" placeholder="Phone">
+      <input type="text" class="your__email contact__field" formControlName="email" placeholder="Email">
+    </div>
+    <button type="submit" class="buy__button">Купить</button>
+
+  </form>
+  <div class="show__delivery__products">
+    <div class="delivery__product__head">Заказ</div>
+    <div class="delivery__products">
+      <div class="delivery__product" *ngFor="let car of cars">
+        <h2>{{car?.name}} {{car?.surname}}</h2>
+        <p>{{car?.price}}$</p>
+      </div>
+    </div>
+    <div class="delivery__product__totals"></div>
+  </div>
+</div>

@@ -1,11 +1,10 @@
-import {Pipe, PipeTransform} from "@angular/core";
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'imageUrl'
+  name: 'imageUrl',
 })
-
-export class imagePipe implements PipeTransform{
+export class imagePipe implements PipeTransform {
   transform(value: any, ...args): any {
-    return 'url' + value;
+    return `url${value}`;
   }
 }

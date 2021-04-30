@@ -1,60 +1,153 @@
-.header{
-  width:100%;
+html, body{
+  height: 100%;
+}
+.header {
+  width: 100%;
   background-color: #252525;
   padding: 30px 0;
   display: flex;
   justify-content: center;
-  .container{
+
+  .container {
     max-width: 1500px;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    .header__icons{
+
+    .header__icons {
       display: flex;
       align-items: center;
       width: 5%;
-      justify-content:space-between;
+      justify-content: space-between;
       position: relative;
-      .header__icons__button{
+
+      .header__icons__button {
         background-color: transparent;
         cursor: pointer;
         outline: none;
         border: none;
-        i{
+
+        i {
           color: #707070;
           font-size: 22px;
-          &:hover{
+
+          &:hover {
             color: #e5493a;
           }
         }
       }
-      .drop__cart{
-        height: 100vh;
+
+      .drop__cart {
+        height: 100%;
         position: fixed;
         top: 0;
-        right: 0;
-        background-color: rgba(17,17,17,0.75);
+        left: 0;
+        background-color: rgba(17, 17, 17, 0.75);
         z-index: 5;
-        width:100%;
+        width: 100%;
         display: flex;
         justify-content: flex-end;
-        .cart{
+
+        .cart {
           position: relative;
           background-color: white;
+          height: 100%;
           width: 30%;
+          overflow-y: auto;
+          z-index: 6;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          .cart__totals{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            font-size: 20px;
+            padding: 20px;
+            button{
+              background-color: transparent;
+              cursor: pointer;
+              border: none;
+              outline: none;
+              font-size: 20px;
+              &:hover{
+                color: #e5493a;
+              }
+            }
+
+          }
+
+          .cart__item {
+            width: 100%;
+            display: flex;
+            border-bottom: 2px solid black;
+            margin-top: 20px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+            &:hover{
+              border-bottom: 2px solid #e5493a;
+              color:  #e5493a ;
+            }
+
+            .cart__item__func {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-around;
+              width: 65%;
+              .cart__item__title{
+                padding-left: 10px;
+                font-family: 'Algerian', sans-serif;
+              }
+              .cart__item__price{
+                padding-left: 10px;
+                font-size: 20px;
+              }
+              .cart__item__delete{
+                background-color: transparent;
+                outline: none;
+                border: none;
+                width: 21%;
+                font-size: 14px;
+                cursor: pointer;
+                &:hover{
+                  color: #e5493a;
+                }
+              }
+              .cart__item__buy{
+                background-color: transparent;
+                outline: none;
+                border: none;
+                width: 21%;
+                font-size: 14px;
+                cursor: pointer;
+                &:hover{
+                  color: #e5493a;
+                }
+              }
+
+            }
+
+            img {
+              width: 30%;
+              height: auto;
+            }
+          }
         }
       }
     }
-    app-menu-header{
-      width:30%;
+
+    app-menu-header {
+      width: 30%;
       display: flex;
       align-items: center;
     }
-    .logo{
+
+    .logo {
       max-width: 150px;
       width: 100%;
-      img{
-        width:100%;
+
+      img {
+        width: 100%;
         height: auto;
       }
     }

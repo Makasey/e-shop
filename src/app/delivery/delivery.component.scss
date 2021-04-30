@@ -1,0 +1,81 @@
+.container{
+  width: 100%;
+  max-width: 1500px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    .delivery__data{
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      width: 100%;
+      .delivery__page__title{
+        font-family: 'Robot', sans-serif;
+        width: 100%;
+        text-align: left;
+        margin-bottom: 10px;
+      }
+      .delivery__field{
+        padding: 10px;
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+      .country__deliver,.city__name{
+        width: 100%;
+      }
+    }
+    .contact__form{
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      width: 100%;
+      .contact__form__title{
+        font-family: 'Robot', sans-serif;
+        width: 100%;
+        text-align: left;
+        margin-bottom: 10px;
+        margin-top: 10px;
+      }
+      .contact__field{
+        padding: 10px;
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+    }
+    .buy__button{
+      display: inline-block;
+      padding: 10px;
+      cursor: pointer;
+      background-color: black;
+      font-size: 20px;
+      color: white;
+      margin-top: 10px;
+    }
+  }
+  .show__delivery__products{
+    width: 40%;
+    .delivery__product__head{
+      border: 2px solid black;
+    }
+    .delivery__products{
+      border: 2px solid black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .delivery__product{
+        border-bottom: 1px solid black;
+        display: flex;
+        justify-content: space-around;
+        width: 80%;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+}

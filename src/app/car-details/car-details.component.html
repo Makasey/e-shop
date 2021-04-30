@@ -1,0 +1,21 @@
+<div class="car__details__component">
+  <div class="container">
+    <div class="car__image">
+      <img src="https://firebasestorage.googleapis.com/v0/b/alex-3af36.appspot.com/o/banner_first.jpg?alt=media&token=b361beae-2ad4-4e23-8e39-f9e31bcd7a84" alt="" (click)="showGallery(0)">
+    </div>
+    <div class="car__details">
+      <h1 class="car__title">{{car?.name}} {{car?.surname}}</h1>
+      <p class="description">{{car?.comment}}</p>
+      <ul class="characteristics__list">
+        <li class="characteristics__list__point">Release date:<span>{{car?.releaseDate}}</span></li>
+        <li class="characteristics__list__point">Seats:<span>{{car?.seats}}</span></li>
+        <li class="characteristics__list__point">Engine capacity:<span>{{car?.engineCapacity}}</span></li>
+        <li class="characteristics__list__point">Engine power:<span>{{car?.enginePower}}</span></li>
+        <li class="characteristics__list__point">Transmission:<span>{{car?.transmission}}</span></li>
+        <li class="characteristics__list__point">Color: <span>{{car?.color}}</span></li>
+        <li class="characteristics__list__point">Price: <span>{{car?.price}}$</span></li>
+      </ul>
+      <button class="add__to__cart__btn" (click)="addToCart()">To cart</button>
+    </div>
+  </div>
+</div>

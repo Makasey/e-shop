@@ -9,4 +9,8 @@ export interface Car {
   comment?: string;
   id?: string;
   uid?: string;
+  seats?: number;
+  color?: string;
+  transmission?: string;
+  sale?: number;
 }
