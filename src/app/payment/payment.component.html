@@ -1,0 +1,67 @@
+<div class="container">
+  <form class="payment__form" [formGroup]="cardNumberGroup">
+    <label for="cardNumber" class="number__card">
+      Номер карты *
+    <input type="text"
+           class="card__number card__field"
+           id="cardNumber"
+           placeholder="Card number"
+           [textMask]="{mask: cardMaskFunction, guide: false, showMask: true}"
+    >
+    </label>
+    <label for="cvv" class="card__cvv medium">
+      Cvv *
+    <input class="valid__date card__field"
+           placeholder="Valid date"
+           type="number"
+           id="cvv"
+           name="cvv"
+           formControlName="cvv"
+           min="100"
+           max="999">
+      <div class="error" *ngIf="cardNumberGroup.controls['cvv'].errors?.min">
+        Cvv должен быть больше 100
+      </div>
+      <div class="error" *ngIf="cardNumberGroup.controls['cvv'].errors?.max">
+        Cvv должен быть меньше 9999
+      </div>
+      <div class="error" *ngIf="cardNumberGroup.controls['cvv'].errors?.required">
+        Поле Cvv не должно быть пустым
+      </div>
+    </label>
+    <label for="date" class="card__date medium">
+      Месяц / Год *
+    <input type="text"
+           class="code card__field"
+           placeholder="Code"
+           id="date" name="date"
+           formControlName="date"
+           maxlength="5">
+      <div class="error" *ngIf="cardNumberGroup.controls['date'].errors?.pattern">
+        Проверьте правильность поля пример:  07/23 или 11/25
+      </div>
+      <div class="error" *ngIf="cardNumberGroup.controls['date'].errors?.required">
+        Поле  Месяц / Год не должно быть пустым
+      </div>
+    </label>
+    <label for="value" class="balance medium">
+      Сумма пополнения *
+    <input type="number"
+           class="total card__field"
+           placeholder="Сумма"
+           id="value"
+           name="value"
+           formControlName="value">
+      <div class="error" *ngIf="cardNumberGroup.controls['value'].errors?.min">
+        Минимальная сумма пополнения 1
+      </div>
+      <div class="error" *ngIf="cardNumberGroup.controls['value'].errors?.max">
+        Максимальная сумма пополнения 10000000
+      </div>
+      <div class="error" *ngIf="cardNumberGroup.controls['value'].errors?.required">
+        Поле  Сумма пополнения не должно быть пустым
+      </div>
+    </label>
+  </form>
+  <button class="pay__card" (click)="submitForm()">Pay</button>
+</div>

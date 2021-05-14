@@ -1,0 +1,21 @@
+.container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  .account__item{
+    margin-top: 15px;
+    font-family: 'Robot', sans-serif;
+  }
+  .account__logo{
+    width: 15%;
+    height: auto;
+  }
+  .account__name{
+    font-size: 34px;
+  }
+  .account__email, .account__balance{
+    font-size: 20px;
+  }
+}

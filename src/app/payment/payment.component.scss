@@ -1,0 +1,49 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  .payment__form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 70%;
+    .number__card{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      .card__number{
+        width: 100%;
+      }
+    }
+    .medium{
+      width: 40%;
+      flex-basis: 40%;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+      .valid__date,.code,.total{
+      }
+    }
+
+    .card__field{
+      padding: 10px;
+      outline: none;
+      width: 100%;
+      border: 1px solid black;
+      margin-bottom: 20px;
+    }
+  }
+  .pay__card{
+    width: 20%;
+    background-color: black;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+  }
+}
+.error{
+  width: 100%;
+}

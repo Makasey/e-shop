@@ -1,0 +1,43 @@
+.container{
+  width:100%;
+  .wishlist__title{
+    width: 100%;
+    text-align: center;
+    font-family: 'Robot', sans-serif;
+    font-size: 34px;
+  }
+  .wish__cars{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    .wish__car{
+      width: 20%;
+      margin-left: 20px;
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      img{
+        width: 100%;
+        height: 200px;
+      }
+      .wish__car__name{
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+      }
+      .wish__btn{
+        cursor: pointer;
+        font-size: 15px;
+        font-family: 'Robot', sans-serif;
+        background-color: green;
+        color: white;
+        outline: none;
+        border: none;
+        padding: 5px;
+        width: 40%;
+      }
+    }
+  }
+}
