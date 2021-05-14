@@ -32,11 +32,10 @@ export class CarDetailsComponent implements OnInit {
     this.crudService
       .getOneObj('CarsArray', this.uid)
       .subscribe((value: Car) => (this.car = { ...value, uid: this.uid }));
-    console.log(this.car.releaseDate);
+    console.log(this.car?.releaseDate);
   }
 
   public addToCart() {
-    console.log(this.car.id);
     if (this.storageService.userData) {
       this.crudService
         .getDataWithQuery('carts', {

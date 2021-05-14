@@ -28,6 +28,10 @@ import { ZoomDirective } from './zoom.directive';
 import { doubleContentDirective } from './double-content.directive';
 import { CarDetailsComponent } from './car-details/car-details.component';
 import { AccountRoutingModule } from './account/account.module';
+import { WishListComponent } from './wish-list/wish-list.component';
+import { OrderListComponent } from './order-list/order-list.component';
+import { PaymentComponent } from './payment/payment.component';
+import { ComparisonListComponent } from './comparison-list/comparison-list.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +50,7 @@ import { AccountRoutingModule } from './account/account.module';
     ZoomDirective,
     doubleContentDirective,
     CarDetailsComponent,
+    ComparisonListComponent,
   ],
   imports: [
     BrowserModule,

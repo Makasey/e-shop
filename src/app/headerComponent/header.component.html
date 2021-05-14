@@ -15,14 +15,18 @@
             <button routerLink="/delivery">To Buy page</button>
             <p>Total price: {{totalCartPrice}} $</p>
           </div>
-          <div class="cart__item" *ngFor="let car of carsArray; let i = index">
-             <img src="{{car?.image}}" loading="lazy" alt="" class="cart__item__image">
-             <div class="cart__item__func">
-               <h2 class="cart__item__title">{{car.name}} {{car.surname}}</h2>
-               <p class="cart__item__price">{{car.price}}$</p>
-               <button class="cart__item__delete" (click)="deleteFromCart(i)"><i class="fa fa-close"></i> remove</button>
-             </div>
-          </div>
+          <p class="empty__cart" *ngIf="isCartEmpty(); else items">Cart is empty</p>
+          <ng-template #items>
+            <div class="cart__item" *ngFor="let car of carsArray; let i = index">
+              <img src="{{car?.image}}" loading="lazy" alt="" class="cart__item__image">
+              <div class="cart__item__func">
+                <h2 class="cart__item__title">{{car.name}} {{car.surname}}</h2>
+                <p class="cart__item__price">{{car.price}}$</p>
+                <button class="cart__item__delete" (click)="deleteFromCart(i)"><i class="fa fa-close"></i> remove</button>
+              </div>
+            </div>
+          </ng-template>
+
 
         </div>
       </div>

@@ -4,8 +4,7 @@
     <div class="delivery__data">
       <h1 class="delivery__page__title">Fill delivery form</h1>
       <input type="text" class="country__deliver delivery__field" formControlName="country" placeholder="Страна">
-      {{deliveryForm.controls['cityName']?.errors?.pattern}}
-      <div class="error" *ngIf="deliveryForm.controls['cityName']?.errors?.pattern">
+      <div class="error" *ngIf="deliveryForm.controls.country?.errors?.pattern">
         Use only
       </div>
       <input type="text" class="city__name delivery__field" formControlName="cityName" placeholder="City name"/>
@@ -30,6 +29,6 @@
         <p>{{car?.price}}$</p>
       </div>
     </div>
-    <div class="delivery__product__totals"></div>
+    <div class="delivery__product__totals">{{carsCounter}}</div>
   </div>
 </div>

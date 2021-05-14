@@ -2,16 +2,15 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { CommonModule } from '@angular/common';
-import { canActivate } from '@angular/fire/auth-guard';
-import { InfoAccComponent } from './info-acc.component';
 import { AuthGuardService } from '../guards/auth-guard.service';
+import { OrderListComponent } from './order-list.component';
 
 const routes: Routes = [
-  { path: 'infoAcc', component: InfoAccComponent, canActivate: [AuthGuardService] },
+  { path: 'orders', component: OrderListComponent, canActivate: [AuthGuardService] },
 ];
 
 @NgModule({
-  declarations: [InfoAccComponent],
+  declarations: [OrderListComponent],
   imports: [CommonModule, RouterModule.forChild(routes)],
 })
-export class InfoAccModule {}
+export class OrderListModule {}

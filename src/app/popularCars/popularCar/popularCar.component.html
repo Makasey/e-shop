@@ -1,8 +1,8 @@
 <div class="popular_car">
   <div class="car_image" [ngStyle]="{'background-image': 'url(' + car?.image + ')'}">
     <div class="car_image--hover">
-      <a href="#" class="Show_more_link">Show more</a>
-      <a href="#" class="add_to_wish"><i class="fa fa-heart"></i></a>
+      <a href="#" class="Show_more_link" routerLink="/details/{{car.uid}}">Show more</a>
+      <button class="add_to_wish" (click)="addToWishList()"><i class="fa fa-heart"></i></button>
     </div>
   </div>
   <p class="name__car">{{car?.name}} {{car?.surname}}</p>

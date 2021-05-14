@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import firebase from 'firebase';
 import { Cart } from './interfaces/Cart';
+import {Wish} from './interfaces/Wish';
+import {Order} from './interfaces/Order';
 
 @Injectable({
   providedIn: 'root',
@@ -15,9 +17,13 @@ export class StorageService {
 
   private _cartData: Cart;
 
-  public wishListData$: BehaviorSubject<Cart> = new BehaviorSubject<Cart>(null);
+  public wishListData$: BehaviorSubject<Wish> = new BehaviorSubject<Wish>(null);
 
-  private _wishListData: Cart;
+  private _wishListData: Wish;
+
+  public orderData$: BehaviorSubject<Order> = new BehaviorSubject<Order>(null);
+
+  private _orderData: Order;
 
   public get userData(): firebase.User {
     return this._userData;
@@ -27,28 +33,39 @@ export class StorageService {
     return this._cartData;
   }
 
-  public get wishListData(): Cart {
+  public get wishListData(): Wish {
     return this._wishListData;
   }
 
-  public set userData(_userData: firebase.User) {
+  public get orderData(): Order {
+    return this._orderData;
+  }
+
+  public set userData( _userData: firebase.User) {
     if (this._userData !== _userData) {
       this._userData = _userData;
       this.userData$.next(this._userData);
     }
   }
 
-  public set cartData(_cartData: Cart) {
+  public set cartData( _cartData: Cart) {
     if (this._cartData !== _cartData) {
       this._cartData = _cartData;
       this.cartData$.next(this._cartData);
     }
   }
 
-  public set wishList(_cartData: Cart) {
-    if (this._cartData !== _cartData) {
-      this._cartData = _cartData;
-      this.cartData$.next(this._cartData);
+  public set wishListData( _wishListData: Wish) {
+    if (this._wishListData !== _wishListData) {
+      this._wishListData = _wishListData;
+      this.wishListData$.next(this._wishListData);
+    }
+  }
+
+  public set orderData( _orderData: Order) {
+    if (this._orderData !== _orderData) {
+      this._orderData = _orderData;
+      this.orderData$.next(this._orderData);
     }
   }
 }

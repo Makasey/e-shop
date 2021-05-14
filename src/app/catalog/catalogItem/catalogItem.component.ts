@@ -5,7 +5,10 @@ import { Car } from '../../interfaces/Car';
 import { CrudService } from '../../services/crud.service';
 import { StorageService } from '../../storage.service';
 import { Cart } from '../../interfaces/Cart';
+import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 
+
+@UntilDestroy()
 @Component({
   selector: 'app-catalogItem',
   templateUrl: './catalogItem.component.html',
@@ -33,7 +36,6 @@ export class CatalogItemComponent {
   }
 
   public addToCart() {
-    console.log(this.car.id);
     if (this.storageService.userData) {
       this.crudService
         .getDataWithQuery('carts', {
@@ -43,6 +45,7 @@ export class CatalogItemComponent {
           secondQueryValue: 'active',
         })
         .pipe(
+          untilDestroyed(this),
           take(1),
           switchMap((value: Cart[]) => {
             const shopCart: Cart = value[0];

@@ -15,7 +15,7 @@ export class PopularCarsComponent implements OnInit {
 
   constructor(private firestore: AngularFirestore, private crudService: CrudService) {}
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.crudService.getData<Car>('CarsArray').subscribe((value: Car[]) => (this.cars = value));
     // this.firestore.collection<Car>('CarsArray')
     //   .valueChanges()

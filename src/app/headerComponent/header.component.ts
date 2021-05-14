@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { filter, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import firebase from 'firebase';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CrudService } from '../services/crud.service';
 import { Car } from '../interfaces/Car';
 import { AuthService } from '../services/auth.service';
 import { StorageService } from '../storage.service';
 import User = firebase.User;
 
+@UntilDestroy()
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -28,6 +30,8 @@ export class headerComponent implements OnInit {
 
   public totalCartPrice = 0;
 
+  public isEmpty = true;
+
   constructor(
     private crudService: CrudService,
     private auth: AuthService,
@@ -36,7 +40,9 @@ export class headerComponent implements OnInit {
 
   public isViewCart(event) {
     event.stopPropagation();
-    if (this.isCart) return (this.isCart = false);
+    if (this.isCart) {
+      return (this.isCart = false);
+    }
     return (this.isCart = true);
   }
 
@@ -67,12 +73,15 @@ export class headerComponent implements OnInit {
     this.auth.signOut().subscribe();
   }
 
-  ngOnInit() {
+  public isCartEmpty(): boolean {
+    return !this.carsArray.length;
+  }
+
+  public ngOnInit(): void {
     this.storageService.userData$
       .pipe(
         filter((value: User) => !!value),
         switchMap((value) => {
-          console.log(value);
           if (value.uid) {
             return this.crudService
               .getDataWithQuery('carts', {
@@ -82,8 +91,8 @@ export class headerComponent implements OnInit {
                 secondQueryValue: 'active',
               })
               .pipe(
+                untilDestroyed(this),
                 tap((value: any) => {
-                  console.log(value);
                   this.carsArray = value[0].cart;
                   this.storageService.cartData = value[0];
                   this.totalCartPrice = this.carsArray.reduce((acc, it) => (acc += +it.price), 0);
