@@ -1,4 +1,4 @@
-import { ValidatorFn, AbstractControl, FormControl } from '@angular/forms';
+import { ValidatorFn, AbstractControl } from '@angular/forms';
 import { luhnCheck } from '../helpers/luhn.helper';
 
 export function luhnValidator(): ValidatorFn {

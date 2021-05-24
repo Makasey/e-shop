@@ -6,6 +6,7 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { HomeComponent } from './homePage/home.component';
 import { AccountComponent } from './account/account.component';
 import { CarDetailsComponent } from './car-details/car-details.component';
+import { ComparisonListComponent } from './comparison-list/comparison-list.component';
 
 const routes: Routes = [
   { path: 'app', component: AppComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'account', component: AccountComponent, canActivate: [AuthGuardService] },
   { path: 'details/:uid', component: CarDetailsComponent },
+  { path: 'comparison', component: ComparisonListComponent}
 ];
 
 @NgModule({

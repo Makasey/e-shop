@@ -32,6 +32,7 @@ import { WishListComponent } from './wish-list/wish-list.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ComparisonListComponent } from './comparison-list/comparison-list.component';
+import {SimpleNotificationsModule} from 'angular2-notifications';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { ComparisonListComponent } from './comparison-list/comparison-list.compo
     BrowserAnimationsModule,
     ReactiveFormsModule,
     IvyGalleryModule,
+    SimpleNotificationsModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

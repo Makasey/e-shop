@@ -16,6 +16,12 @@ import User = firebase.User;
   styleUrls: ['./header.component.scss'],
 })
 export class headerComponent implements OnInit {
+
+  constructor(
+    private crudService: CrudService,
+    private auth: AuthService,
+    private storageService: StorageService,
+  ) {}
   public title = 'header';
 
   public cartCounter = 0;
@@ -32,13 +38,7 @@ export class headerComponent implements OnInit {
 
   public isEmpty = true;
 
-  constructor(
-    private crudService: CrudService,
-    private auth: AuthService,
-    private storageService: StorageService,
-  ) {}
-
-  public isViewCart(event) {
+  public isViewCart(event): boolean {
     event.stopPropagation();
     if (this.isCart) {
       return (this.isCart = false);
@@ -96,6 +96,7 @@ export class headerComponent implements OnInit {
                   this.carsArray = value[0].cart;
                   this.storageService.cartData = value[0];
                   this.totalCartPrice = this.carsArray.reduce((acc, it) => (acc += +it.price), 0);
+                  this.cartCounter = this.carsArray.length;
                 }),
               );
           }

@@ -5,8 +5,7 @@
     </div>
     <app-menu-header></app-menu-header>
     <div class="header__icons">
-      <button class="open__cart header__icons__button" (click)="isViewCart($event)"><i class="fa fa-shopping-cart"></i>
-      </button>
+      <button class="open__cart header__icons__button" (click)="isViewCart($event)"><i class="fa fa-shopping-cart"><p class="cart__counter">{{cartCounter}}</p></i></button>
       <button class="sign__in header__icons__button" (click)="signIn()"><i class="fa fa-sign-in"></i></button>
       <button class="sign__out header__icons__button" (click)="signOut()"><i class="fa fa-sign-out"></i></button>
       <div class="drop__cart" (click)="isViewCart($event)" *ngIf="isCart">

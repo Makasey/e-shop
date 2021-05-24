@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { from, Observable } from 'rxjs';
+import {from, Observable, Subject} from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
 import firebase from 'firebase';
 import { Car } from '../interfaces/Car';
 import DocumentReference = firebase.firestore.DocumentReference;
 import firestore = firebase.firestore;
+import OrderByDirection = firebase.firestore.OrderByDirection;
 
 @Injectable({
   providedIn: 'root',
 })
 export class CrudService {
   constructor(private firestoreService: AngularFirestore) {}
+
+  public beforeLogout: Subject<void> = new Subject<void>();
 
   public createEntity(collectionName: string, data: object): Observable<string> {
     return from(this.firestoreService.collection(collectionName).add(data)).pipe(
@@ -54,7 +57,7 @@ export class CrudService {
 
   public getDataWithQuery<T>(
     collectionName: string,
-    { firstQueryValue, firstQueryName, secondQueryValue = 'a', secondQueryName = 'a' },
+    { firstQueryValue, firstQueryName, secondQueryValue = '.', secondQueryName = '.' },
   ): Observable<T[]> {
     return this.firestoreService
       .collection(collectionName, (ref) => {
@@ -75,6 +78,53 @@ export class CrudService {
       );
   }
 
+  public getFilterProducts<T>(
+    collectionName: string,
+    queryTitle: string,
+    queryDirection: OrderByDirection,
+    limit = 10,
+    startAt = 1,
+  ): Observable<T[]> {
+    return this.firestoreService
+      .collection(collectionName, (ref) => {
+        const query: firestore.Query = ref;
+        return query.orderBy(`${queryTitle}`, queryDirection).limit(limit);
+      })
+      .snapshotChanges()
+      .pipe(
+        map((actions) =>
+          actions.map((a) => {
+            const data: any = a.payload.doc.data();
+            const { id } = a.payload.doc;
+            return { id, ...data } as T;
+          }),
+        ),
+        take(1),
+      );
+  }
+
+  public getOneDataWithQuery<T>(
+    collectionName: string,
+    { firstQueryValue, firstQueryName },
+  ): Observable<T[]> {
+    return this.firestoreService
+      .collection(collectionName, (ref) => {
+        const query: firestore.Query = ref;
+        return query.where(`${firstQueryName}`, '==', `${firstQueryValue}`);
+      })
+      .snapshotChanges()
+      .pipe(
+        map((actions) =>
+          actions.map((reference) => {
+            const data: any = reference.payload.doc.data();
+            const { id } = reference.payload.doc;
+            return { id, ...data } as T;
+          }),
+        ),
+        take(1),
+      );
+  }
+
   public updateCart<T>(collectionName: string, id: string, cart: Car[]) {
     return from(
       this.firestoreService.collection(collectionName).doc(id).set({ cart }, { merge: true }),
@@ -84,6 +134,14 @@ export class CrudService {
     );
   }
 
+  public updateCartObject(collectionName: string, id: string, value: string): Observable<void> {
+    return from(
+      this.firestoreService
+        .collection(collectionName)
+        .doc(id)
+        .set({ status: value }, { merge: true }),
+    ).pipe(take(1));
+  }
   public updateUserBalance(collectionName: string, id: string, value): Observable<void> {
     return from(
       this.firestoreService
@@ -96,6 +154,15 @@ export class CrudService {
   public updateWish<T>(collectionName: string, id: string, wishlist: Car[]) {
     return from(
       this.firestoreService.collection(collectionName).doc(id).set({ wishlist }, { merge: true }),
+    ).pipe(
+      map(() => id),
+      take(1),
+    );
+  }
+
+  public updateComparison<T>(collectionName: string, id: string, items: Car[]) {
+    return from(
+      this.firestoreService.collection(collectionName).doc(id).set({ items }, { merge: true }),
     ).pipe(
       map(() => id),
       take(1),

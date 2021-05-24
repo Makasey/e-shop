@@ -6,6 +6,7 @@
            class="card__number card__field"
            id="cardNumber"
            placeholder="Card number"
+           formControlName="cardNumber"
            [textMask]="{mask: cardMaskFunction, guide: false, showMask: true}"
     >
     </label>
@@ -65,3 +66,6 @@
   </form>
   <button class="pay__card" (click)="submitForm()">Pay</button>
 </div>
+<simple-notifications>
+
+</simple-notifications>

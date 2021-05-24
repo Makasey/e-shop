@@ -7,9 +7,11 @@
       <div class="buy__price">
         <p class="price">{{car?.price}}$</p>
         <button class="buy__car" routerLink="/details/{{car.uid}}" >View Details</button>
-        <button class="test__delete" (click)="deleteCar()">delete</button>
         <button class="add__to__cart" (click)="addToCart()">To Cart</button>
+        <button class="add__to__cart" (click)="addToComparisonList()">To Compare</button>
       </div>
     </div>
   </div>
 </div>
+
+<simple-notifications></simple-notifications>

@@ -1,9 +1,24 @@
 <div class="catalog__page">
   <h1>Catalog</h1>
-  <app-catalogItem
-    *ngFor="let car of cars"
-    [car]="car">
+  <select name="filters" id="filter" class="filter__list" (change)="filter($event)">
+    <option value="default" selected disabled>Car name </option>
+    <option value="All" class="filter__list__point">All</option>
+    <option value="Ford" class="filter__list__point">Ford</option>
+    <option value="Toyota" class="filter__list__point">Toyota</option>
+    <option value="Reno" class="filter__list__point">Reno</option>
+    <option value="Volkswagen" class="filter__list__point">Volkswagen</option>
+    <option value="Ferrari" class="filter__list__point">Ferrari</option>
+  </select>
 
-  </app-catalogItem>
-  <button (click)="createCar()">Create car</button>
+  <app-catalog-item
+    *ngFor="let car of carsArray"
+    [car]="car">
+  </app-catalog-item>
+
+  <div class="pagination__btns">
+    <button class="pag__btn" (click)="swapPage(-1)" *ngIf="!isPag"><i class="fa fa-chevron-circle-left" ></i> Prev </button>
+    |
+    <button class="pag__btn" (click)="swapPage(1)">Next <i class="fa fa-chevron-circle-right" ></i></button>
+  </div>
 </div>
+

@@ -7,7 +7,7 @@ import { StorageService } from '../../storage.service';
 import { CrudService } from '../../services/crud.service';
 
 @Component({
-  selector: 'popular-car',
+  selector: 'app-popular-car',
   templateUrl: './popularCar.component.html',
   styleUrls: ['./popularCar.component.scss'],
 })

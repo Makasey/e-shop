@@ -25,8 +25,16 @@ export class StorageService {
 
   private _orderData: Order;
 
+  public comparisonData$: BehaviorSubject<Wish> = new BehaviorSubject<Wish>(null);
+
+  private _comparisonData: Wish;
+
   public get userData(): firebase.User {
     return this._userData;
+  }
+
+  public get comparisonData(): Wish {
+    return this._comparisonData;
   }
 
   public get cartData(): Cart {
@@ -59,6 +67,13 @@ export class StorageService {
     if (this._wishListData !== _wishListData) {
       this._wishListData = _wishListData;
       this.wishListData$.next(this._wishListData);
+    }
+  }
+
+  public set comparisonData( _comparisonData: Wish) {
+    if (this._comparisonData !== _comparisonData) {
+      this._comparisonData = _comparisonData;
+      this.comparisonData$.next(this._comparisonData);
     }
   }
 

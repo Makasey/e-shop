@@ -17,8 +17,6 @@ export class PopularCarsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.crudService.getData<Car>('CarsArray').subscribe((value: Car[]) => (this.cars = value));
-    // this.firestore.collection<Car>('CarsArray')
-    //   .valueChanges()
-    //   .subscribe( (value: Car[]) => this.cars = value)
+
   }
 }

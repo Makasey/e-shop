@@ -12,5 +12,7 @@ export class headerMenuComponent {
 
   public menuAccount = 'Account';
 
+  public menuComparison = 'Comparison';
+
   constructor() {}
 }

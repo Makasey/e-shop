@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { filter, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CrudService } from '../services/crud.service';
 import { AuthService } from '../services/auth.service';
 import { User } from '../interfaces/User';
 import { StorageService } from '../storage.service';
 import set = Reflect.set;
-import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 
 @UntilDestroy()
 @Component({
@@ -27,27 +27,28 @@ export class InfoAccComponent implements OnInit {
 
   public accEmail: string;
 
-  public balance = 200;
+  public balanced: any;
 
   public ngOnInit(): void {
     this.storageService.userData$
       .pipe(
         untilDestroyed(this),
-        switchMap((value) => {
-          // setInterval(() => console.log(value), 2000);
+        switchMap((value: any) => {
           if (value) {
             return this.crudService
-              .getDataWithQuery('usersData', {
+              .getOneDataWithQuery('usersData', {
                 firstQueryName: 'userId',
                 firstQueryValue: value.uid,
               })
               .pipe(
-                untilDestroyed(this),
-                tap(() => {
-                  this.accName = value.displayName;
-                  this.accLogo = value.photoURL;
-                  this.accEmail = value.email;
+                tap((value1: any) => {
+                  this.accEmail = value1[0].email;
+                  this.balanced = value1[0].balance;
+                  this.accLogo = value1[0].photo;
+                  this.accName = value1[0].name;
+                  console.log(value1[0]);
                 }),
+                untilDestroyed(this),
               );
           }
           return of([]);

@@ -5,6 +5,10 @@ export interface Car {
   enginePower?: number;
   surname?: string;
   price?: number;
+  options?: Array<{
+    value: string;
+    name: string;
+  }>;
   image?: string;
   comment?: string;
   id?: string;

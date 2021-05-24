@@ -1,1 +1,44 @@
-<p>comparison-list works!</p>
+<div class="comparison">
+  <div class="container">
+    <h2 class="comparison__title">
+      Comparison List
+    </h2>
+    <div class="comparison__wrapper" *ngIf="comparisonList.wishlist.length; else alternative">
+      <div class="comparison__item">
+        <div class="comparison__item__header">
+          <a routerLink="/catalog">Каталог</a>
+        </div>
+        <div class="comparison__item__params">
+          <div class="comparison__item__param" *ngFor="let option of comparisonListOptions; let i = index">
+            {{option["name"] }}
+          </div>
+        </div>
+      </div>
+      <div class="comparison__item" *ngFor="let item of comparisonList.wishlist;let i = index">
+        <div class="comparison__item__header">
+          <div class="comparison__item__image">
+            <img src="{{item.image}}" alt="{{item?.name}}">
+          </div>
+          <h2 class="comparison__item__title">{{item?.name}}</h2>
+          <div class="comparison__item__prices">
+            <h3 class="comparison__item__price" [ngClass]="{sale: item.sale}" >{{item.price}} $</h3>
+          </div>
+          <div class="product__buttons">
+            <button class="about__btn" routerLink="/details/{{item.uid}}"> Подробнее </button>
+          </div>
+        </div>
+        <div class="comparison__item__params">
+          <div class="comparison__item__param" *ngFor="let option of comparisonList.wishlist[i].options">
+            {{option.value}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #alternative>
+      <p class="comparison__text">
+        Comparison list is empty, <a class="comparison__text__link" routerLink="/catalog">add something</a>
+      </p>
+    </ng-template>
+  </div>
+
+</div>

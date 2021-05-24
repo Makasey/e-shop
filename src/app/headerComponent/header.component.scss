@@ -20,12 +20,29 @@ html, body{
       width: 5%;
       justify-content: space-between;
       position: relative;
-
+      .cart__counter{
+        position: absolute;
+        display: inline-block;
+        background-color: #e5493a;
+        color: white;
+        font-size: 12px;
+        border-radius: 100%;
+        top: 0;
+        right: 0;
+        width: 15px;
+        height: 15px;
+        text-align: center;
+        margin: 0 auto;
+        padding-top: 3px;
+      }
       .header__icons__button {
         background-color: transparent;
         cursor: pointer;
         outline: none;
         border: none;
+        position: relative;
+        padding: 10px;
+
 
         i {
           color: #707070;

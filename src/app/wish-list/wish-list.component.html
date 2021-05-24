@@ -4,7 +4,6 @@
     <div class="wish__car" *ngFor="let car of carsArray; let i = index">
       <img src="{{car.image}}" alt="" class="wish__car__photo">
       <h2 class="wish__car__name">{{car.name}}{{car.surname}}</h2>
-      <button class="add__to__cart__btn wish__btn">Add to cart</button>
       <button class="del__from__wish wish__btn" (click)="deleteFromWish(i)">Delete</button>
     </div>
   </div>

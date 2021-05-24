@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import {switchMap, tap} from 'rxjs/operators';
+import { switchMap, take, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NotificationsService } from 'angular2-notifications';
 import { luhnValidator } from './validators/luhnValidator';
@@ -30,56 +30,44 @@ export class PaymentComponent implements OnInit {
       cardNumber: new FormControl('', [
         Validators.required,
         Validators.minLength(12),
-        luhnValidator(),
+        Validators.maxLength(14),
       ]),
-      cvv: new FormControl('', [Validators.required, Validators.min(100), Validators.max(9999)]),
-      date: new FormControl('', [
-        Validators.required,
-        Validators.pattern('^[0-1]{1}[0-9]{1}[/]{0,1}[2-9]{1}[1-9]{1}$'),
-      ]),
-      value: new FormControl('', [Validators.required, Validators.min(1), Validators.max(1000000)]),
+      cvv: new FormControl('', [Validators.required]),
+      date: new FormControl('', [Validators.required]),
+      value: new FormControl('', [Validators.required]),
     });
-    this.cardNumberGroup.controls.cvv.patchValue('');
   }
 
   public submitForm(): void {
     const { controls } = this.cardNumberGroup;
     console.log(this.cardNumberGroup);
-    if (this.cardNumberGroup.invalid) {
-      Object.keys(controls).forEach((controlName) => controls[controlName].markAsTouched());
-      return;
-    }
-    console.log('Test')
+
+    console.log('Test');
     const data = {
       balance: controls.value.value,
     };
-
+    console.log(this.storageService.userData.uid);
     this.crudService
-      .getDataWithQuery('usersData', {
-        firstQueryName: 'uid',
+      .getOneDataWithQuery('usersData', {
+        firstQueryName: 'userId',
         firstQueryValue: this.storageService.userData.uid,
       })
       .pipe(
-        switchMap((value1: User[]) => {
+        switchMap((value1: any) => {
           console.log(value1);
           if (value1) {
             const [userInfo] = value1;
             let finalBalance = +userInfo.balance || 0;
             finalBalance += +data.balance;
-            console.log(finalBalance);
             this.notification.success('Успех', 'Счёт пополнен', {
               timeOut: 1800,
               showProgressBar: true,
               clickToClose: true,
             });
             setTimeout(() => {
-              this.router.navigate(['/account/info']);
+              this.router.navigate(['/account']);
             }, 2000);
-            return this.crudService.updateUserBalance(
-              'usersData',
-              this.storageService.userData.uid,
-              finalBalance,
-            );
+            return this.crudService.updateUserBalance('usersData', value1[0].id, finalBalance);
           }
           this.notification.error('Ошибка', 'Что-то пошло не так', {
             timeOut: 2500,
@@ -89,7 +77,10 @@ export class PaymentComponent implements OnInit {
           });
           return [];
         }),
-      ).subscribe();
+        take(1),
+      )
+      .subscribe();
+    this.cardNumberGroup.reset();
   }
 
   public getCardNumberControl(): AbstractControl | FormControl | null {
@@ -104,3 +95,9 @@ export class PaymentComponent implements OnInit {
     return [/\d/];
   }
 }
+
+// if (this.cardNumberGroup.invalid) {
+//   Object.keys(controls).forEach((controlName) => controls[controlName].markAsTouched());
+//   console.log('test1');
+//   return;
+// }
